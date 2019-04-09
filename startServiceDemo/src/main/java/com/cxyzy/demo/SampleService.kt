@@ -3,8 +3,8 @@ package com.cxyzy.demo
 import android.app.IntentService
 import android.content.Intent
 
-class SampleIntentService : IntentService("download_worker_thread") {
-    private val tag = SampleIntentService::class.java.simpleName
+class SampleService : IntentService("download_worker_thread") {
+    private val tag = SampleService::class.java.simpleName
     override fun onHandleIntent(intent: Intent?) {
         log(tag, "onNewIntent")
         doSomething()

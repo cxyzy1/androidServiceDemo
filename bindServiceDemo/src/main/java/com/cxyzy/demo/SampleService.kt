@@ -1,25 +1,22 @@
 package com.cxyzy.demo
 
-import android.app.IntentService
+import android.app.Service
 import android.content.Intent
 import android.os.Binder
 import android.os.IBinder
 import kotlin.random.Random
 
 
-class SampleIntentService : IntentService("download_worker_thread") {
-    private val tag = SampleIntentService::class.java.simpleName
+class SampleService : Service() {
+    private val tag = SampleService::class.java.simpleName
 
     inner class MyBinder : Binder() {
 
-        val service: SampleIntentService
-            get() = this@SampleIntentService
+        val service: SampleService
+            get() = this@SampleService
     }
 
     private val binder = MyBinder()
-    override fun onHandleIntent(intent: Intent?) {
-        log(tag, "onNewIntent")
-    }
 
     private fun doSomething() {
         log(tag, "doSomething")
