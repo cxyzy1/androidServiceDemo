@@ -1,14 +1,16 @@
 package com.cxyzy.demo
 
-import android.app.IntentService
+import android.app.Service
 import android.content.Intent
+import android.os.IBinder
+import kotlin.concurrent.thread
 
-class SampleService : IntentService("download_worker_thread") {
-    private val tag = SampleService::class.java.simpleName
-    override fun onHandleIntent(intent: Intent?) {
-        log(tag, "onNewIntent")
-        doSomething()
+class SampleService : Service() {
+    override fun onBind(intent: Intent?): IBinder? {
+        return null
     }
+
+    private val tag = SampleService::class.java.simpleName
 
     private fun doSomething() {
         log(tag, "doSomething")
@@ -22,6 +24,9 @@ class SampleService : IntentService("download_worker_thread") {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         log(tag, "onStartCommand")
+        thread(name = "worker-thread") {
+            doSomething()
+        }
         return super.onStartCommand(intent, flags, startId)
     }
 
