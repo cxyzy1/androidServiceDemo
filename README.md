@@ -1,2 +1,2 @@
 # androidServiceDemo
-android service demo
+android service demo including startService and bindService.
